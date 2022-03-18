@@ -47,6 +47,7 @@ const MULTICALL_ADDRESS: { [chainId in ChainId]: string } = {
   const master = new Contract(masterAddress, MASTER_ABI, wallet)
   const multicall = new Contract(multicallAddress, MULTICALL_ABI, jsonRpcProvider)
 
+  const workingOnJobs: { [id: number]: boolean } = {}
   websocketProvider.on('block', async (number) => {
     const jobsAmount = await master.jobsAmount()
     const jobs: Job[] = await master.jobsSlice(0, jobsAmount)
@@ -61,7 +62,6 @@ const MULTICALL_ADDRESS: { [chainId in ChainId]: string } = {
       ])
     )
 
-    const workingOnJobs: { [id: number]: boolean } = {}
     const workableJobs: WorkableJob[] = []
     for (let i = 0; i < results.length; i++) {
       const result = results[i]
