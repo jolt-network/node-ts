@@ -7,6 +7,7 @@ import MULTICALL_ABI from '../abis/multicall.json'
 
 enum ChainId {
   RINKEBY = 4,
+  GOERLI = 5,
 }
 
 interface Job {
@@ -23,10 +24,12 @@ if (!privateKey || !websocketEndpoint || !jsonRpcEndpoint) throw new Error('inva
 
 const MASTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.RINKEBY]: '0xb1d53370ef46b0A8fF4071b9e294C60b479D25A0',
+  [ChainId.GOERLI]: '0x95Bf186929194099899139Ff79998cC147290F28',
 }
 
 const MULTICALL_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.RINKEBY]: '0x798d8ced4dff8f054a5153762187e84751a73344',
+  [ChainId.GOERLI]: '0x44445F80e99C45b3ca8a6c208a993B31F342b01e',
 }
 
 ;(async () => {
